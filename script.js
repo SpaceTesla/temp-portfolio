@@ -1,21 +1,21 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const menuIcon = document.getElementById("menuIcon");
-  const navbarList = document.querySelector(".navbar ul");
-  const jobTitleElement = document.getElementById("jobTitle");
-  const underConstructionElement = document.getElementById("underConstruction");
+document.addEventListener('DOMContentLoaded', () => {
+  const menuIcon = document.getElementById('menuIcon');
+  const navbarList = document.querySelector('.navbar ul');
+  const jobTitleElement = document.getElementById('jobTitle');
+  const underConstructionElement = document.getElementById('underConstruction');
 
   const jobTitles = [
-    "Frontend Developer",
-    "Backend Developer",
-    "Software Engineer",
-    "DevOps Engineer",
+    'Frontend Developer',
+    'Backend Developer',
+    'Software Engineer',
+    'DevOps Engineer',
   ];
   let currentIndex = 0;
   let glitchInterval;
 
-  menuIcon.addEventListener("click", () => {
-    navbarList.classList.toggle("show");
-    menuIcon.classList.toggle("open");
+  menuIcon.addEventListener('click', () => {
+    navbarList.classList.toggle('show');
+    menuIcon.classList.toggle('open');
   });
 
   const updateJobTitle = () => {
@@ -28,21 +28,27 @@ document.addEventListener("DOMContentLoaded", () => {
       }, i * typingSpeed);
     }
 
-    setTimeout(() => {
-      for (let i = currentJobTitle.length; i >= 0; i--) {
-        setTimeout(() => {
-          jobTitleElement.innerText = currentJobTitle.slice(0, i);
-        }, (currentJobTitle.length - i) * typingSpeed);
-      }
+    setTimeout(
+      () => {
+        for (let i = currentJobTitle.length; i >= 0; i--) {
+          setTimeout(
+            () => {
+              jobTitleElement.innerText = currentJobTitle.slice(0, i);
+            },
+            (currentJobTitle.length - i) * typingSpeed,
+          );
+        }
 
-      currentIndex = (currentIndex + 1) % jobTitles.length;
-      setTimeout(updateJobTitle, currentJobTitle.length * typingSpeed);
-    }, currentJobTitle.length * typingSpeed + 2000);
+        currentIndex = (currentIndex + 1) % jobTitles.length;
+        setTimeout(updateJobTitle, currentJobTitle.length * typingSpeed);
+      },
+      currentJobTitle.length * typingSpeed + 2000,
+    );
   };
 
   const glitchEffect = () => {
     const characters =
-      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+-=[]{}|;:,.<>?/~`";
+      'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+-=[]{}|;:,.<>?/~`';
 
     const doGlitch = () => {
       let glitchedText = underConstructionElement.innerText;
@@ -55,24 +61,25 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     const reverseGlitch = () => {
-      let originalText =
-        "Please stand by while I wrestle with code and coffee!";
-      let glitchedText = underConstructionElement.innerText;
-      let currentIndex = glitchedText.length;
+      const originalText =
+        'Please stand by while I wrestle with code and coffee!';
+      let glitchedText = underConstructionElement.innerText.split(''); // Ensure it starts from the current glitched text
+      let currentIndex = originalText.length - 1; // Start at the last character
 
       const reverseInterval = setInterval(() => {
         if (currentIndex >= 0) {
-          glitchedText =
-            originalText.substring(0, currentIndex) +
-            characters[Math.floor(Math.random() * characters.length)] +
-            originalText.substring(currentIndex + 1);
-          underConstructionElement.innerText = glitchedText;
+          // Slowly revert characters back to the original one by one
+          glitchedText[currentIndex] = originalText[currentIndex];
+
+          // Update the element's text by joining the array back into a string
+          underConstructionElement.innerText = glitchedText.join('');
           currentIndex--;
         } else {
+          // If we finish the reverse glitch, stop the interval
           clearInterval(reverseInterval);
-          setTimeout(startNextCycle, 2000);
+          setTimeout(startNextCycle, 2000); // Start the glitch cycle again after a delay
         }
-      }, 100);
+      }, 100); // Adjust the speed here for a smoother transition
     };
 
     const stopGlitch = () => {
@@ -95,7 +102,7 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const initializeParticles = () => {
-    particlesJS("particles-js", {
+    particlesJS('particles-js', {
       particles: {
         number: {
           value: 80,
@@ -105,19 +112,19 @@ document.addEventListener("DOMContentLoaded", () => {
           },
         },
         color: {
-          value: "#ffffff",
+          value: '#ffffff',
         },
         shape: {
-          type: "circle",
+          type: 'circle',
           stroke: {
             width: 0,
-            color: "#000000",
+            color: '#000000',
           },
           polygon: {
             nb_sides: 5,
           },
           image: {
-            src: "img/github.svg",
+            src: 'img/github.svg',
             width: 100,
             height: 100,
           },
@@ -145,17 +152,17 @@ document.addEventListener("DOMContentLoaded", () => {
         line_linked: {
           enable: true,
           distance: 150,
-          color: "#ffffff",
+          color: '#ffffff',
           opacity: 0.4,
           width: 1,
         },
         move: {
           enable: true,
           speed: 6,
-          direction: "none",
+          direction: 'none',
           random: false,
           straight: false,
-          out_mode: "out",
+          out_mode: 'out',
           attract: {
             enable: false,
             rotateX: 600,
@@ -164,15 +171,15 @@ document.addEventListener("DOMContentLoaded", () => {
         },
       },
       interactivity: {
-        detect_on: "canvas",
+        detect_on: 'canvas',
         events: {
           onhover: {
             enable: true,
-            mode: "repulse",
+            mode: 'repulse',
           },
           onclick: {
             enable: true,
-            mode: "push",
+            mode: 'push',
           },
           resize: true,
         },
@@ -204,11 +211,11 @@ document.addEventListener("DOMContentLoaded", () => {
       retina_detect: true,
       config_demo: {
         hide_card: false,
-        background_color: "#b61924",
-        background_image: "",
-        background_position: "50% 50%",
-        background_repeat: "no-repeat",
-        background_size: "cover",
+        background_color: '#b61924',
+        background_image: '',
+        background_position: '50% 50%',
+        background_repeat: 'no-repeat',
+        background_size: 'cover',
       },
     });
   };
@@ -216,4 +223,17 @@ document.addEventListener("DOMContentLoaded", () => {
   initializeParticles();
   updateJobTitle();
   glitchEffect();
+
+  function handleResize() {
+    const content = document.querySelector('.navbar');
+
+    if (window.innerWidth <= 768) {
+      content.classList.remove('blur-background');
+    } else {
+      content.classList.add('blur-background');
+    }
+  }
+
+  window.addEventListener('resize', handleResize);
+  window.addEventListener('load', handleResize);
 });

@@ -105,7 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
     particlesJS('particles-js', {
       particles: {
         number: {
-          value: 80,
+          value: 140,
           density: {
             enable: true,
             value_area: 800,
@@ -158,7 +158,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         move: {
           enable: true,
-          speed: 6,
+          speed: 4,
           direction: 'none',
           random: false,
           straight: false,
@@ -198,7 +198,7 @@ document.addEventListener('DOMContentLoaded', () => {
             speed: 3,
           },
           repulse: {
-            distance: 200,
+            distance: 80,
           },
           push: {
             particles_nb: 4,
